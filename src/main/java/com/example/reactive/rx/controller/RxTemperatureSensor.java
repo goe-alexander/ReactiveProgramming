@@ -1,4 +1,4 @@
-package com.example.reactive.rx_controller;
+package com.example.reactive.rx.controller;
 
 import com.example.reactive.domain.Temperature;
 import io.reactivex.Observable;

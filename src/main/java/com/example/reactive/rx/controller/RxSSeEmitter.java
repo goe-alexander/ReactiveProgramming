@@ -1,11 +1,9 @@
-package com.example.reactive.rx_controller;
+package com.example.reactive.rx.controller;
 
 import com.example.reactive.domain.Temperature;
-import io.reactivex.FlowableSubscriber;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 import org.jetbrains.annotations.NotNull;
-import org.reactivestreams.Subscription;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 import java.io.IOException;

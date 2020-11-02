@@ -1,8 +1,6 @@
-package rx_java_observer;
+package rx.java.observer;
 
-import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.*;
 import io.reactivex.observers.DisposableObserver;
 import org.jetbrains.annotations.NotNull;
 
@@ -81,5 +79,11 @@ public class Main {
         .forEach(System.out::println);
 
 
+        // Flowable example -> reaplces the Observable but extends Publisher right of the bat
+        Flowable.just(1,2,3)
+                .map(String::valueOf)
+                .toObservable()  // Conversion from Observable to flowable is straight forward. Observable in RX2 was designed as push only
+                .toFlowable(BackpressureStrategy.ERROR) // Reverse needs an additional BackPressure strategy
+                .subscribe(System.out::println, System.out::println, () -> System.out.println("Done for flowable"));
     }
 }
