@@ -3,10 +3,12 @@ package project.reactor;
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.ConnectableFlux;
 import reactor.core.publisher.Flux;
+import reactor.util.function.Tuple2;
 
 import java.time.Duration;
 import java.util.Random;
 import java.util.UUID;
+import java.util.function.Function;
 
 @Slf4j
 public class EventHandling {
@@ -88,6 +90,37 @@ public class EventHandling {
         Thread.sleep(500);
 
         // Composing and transforming reactive Streams
+        // Defining a function to apply as a transformation to a stream
+        // Removing enumertion info from the outgoing sream by getting only T2
+        // The TRANSFORM operator updates the stream behaviour only once
+        System.out.println("######## Transforming streams with functions");
+        Function<Flux<String>, Flux<String>> logUserInfo =
+                stream -> stream
+                        .index()
+                        .doOnNext(tp -> log.info("[{}] User: {}", tp.getT1(), tp.getT2()))
+                        .map(Tuple2::getT2);
+
+        Flux.range(1000, 3)
+                .map(i -> "user-" + i)
+                .transform(logUserInfo)
+                .subscribe(e -> log.info("onNext: {} ", e));
+
+
+        // The COMPOSE operator updates the stream behaviour each time a subscriber arrives
+        System.out.println("######## Composing streams with functions");
+        Function<Flux<String>, Flux<String>> composeUserInfo = (stream) -> {
+            if(random.nextBoolean()){
+                return stream.doOnNext(e -> log.info("[path A] User: {}", e));
+            } else {
+                return stream.doOnNext(e -> log.info("[path B] User: {}", e));
+            }
+        };
+
+        //Processors
+        // A processor is a publisher and a subscriber at the same time. We can subscribe to it and also send signals.
+        // Project reactor recommends to avoid the use of Processors
+
+
 
     }
 
