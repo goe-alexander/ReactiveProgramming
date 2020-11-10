@@ -1,12 +1,8 @@
-package rx.java.observer;
+package reactive_progression;
 
 import io.reactivex.*;
 import io.reactivex.observers.DisposableObserver;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException {
@@ -50,11 +46,11 @@ public class Main {
 
         Observable.just("1", "2", "3", "4").subscribe(System.out::println,
                 System.out::println,
-                () -> System.out.println("DONE FOR this simple just observer!")
+                () -> System.out.println("DONE FOR this simple just reactive_progression.observer!")
         );
         Observable.fromArray(new String[] {"A", "B", "C"}).subscribe(System.out::println,
                 System.out::println,
-                () -> System.out.println("DONE FOR this Array just observer!")
+                () -> System.out.println("DONE FOR this Array just reactive_progression.observer!")
         );
         //Observable from Callable
         Observable<String> hello =  Observable.fromCallable(() -> "HEllo from callable");

@@ -1,4 +1,4 @@
-package project.reactor;
+package reactive_progression.reactor;
 
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.Disposable;
@@ -6,6 +6,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Scheduler;
 import reactor.core.scheduler.Schedulers;
+import reactor.util.context.Context;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -87,6 +88,19 @@ public class AdvancedReactor {
                 )
                 .subscribe(e -> log.info("onNext: {}", e));
 
-        Thread.sleep(2500);
+        // Using different contexts at subscriberTime
+        printCurrentContext("top")
+                .subscriberContext(Context.of("top", "message"))
+                .flatMap(__ -> printCurrentContext("middle"))
+                .subscriberContext(Context.of("middle", "context"))
+                .flatMap(__ -> printCurrentContext("bottom"))
+                .subscriberContext(Context.of("bottom", "context"))
+                .flatMap(__ -> printCurrentContext("initial"))
+                .block();
+    }
+
+    private static Mono<Context> printCurrentContext(String someId){
+        return Mono.subscriberContext()
+                .doOnNext(context -> log.info("id / Context: {} {}",someId, context));
     }
 }

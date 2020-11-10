@@ -1,4 +1,4 @@
-package observer;
+package reactive_progression.observer;
 
 public interface Subject<T> {
     void registerObserver(Observer<T> observer);

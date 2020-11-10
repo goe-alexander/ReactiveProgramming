@@ -7,6 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.AsyncConfigurer;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+import reactor.core.publisher.Hooks;
+
 
 import java.util.concurrent.Executor;
 
@@ -14,7 +16,9 @@ import java.util.concurrent.Executor;
 @SpringBootApplication
 public class ReactiveApplication implements AsyncConfigurer {
 
+
 	public static void main(String[] args) {
+		Hooks.onOperatorDebug();
 		SpringApplication.run(ReactiveApplication.class, args);
 	}
 
@@ -32,4 +36,5 @@ public class ReactiveApplication implements AsyncConfigurer {
 	public AsyncUncaughtExceptionHandler getAsyncUncaughtExceptionHandler(){
 		return new SimpleAsyncUncaughtExceptionHandler();
 	}
+
 }

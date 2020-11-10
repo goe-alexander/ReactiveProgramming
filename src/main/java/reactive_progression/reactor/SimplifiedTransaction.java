@@ -1,7 +1,6 @@
-package project.reactor;
+package reactive_progression.reactor;
 
 import lombok.extern.slf4j.Slf4j;
-import org.hibernate.Transaction;
 import org.reactivestreams.Publisher;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;

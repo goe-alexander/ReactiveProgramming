@@ -1,4 +1,4 @@
-package rx.java.observer;
+package reactive_progression.observer;
 
 public interface RxObserver<T> {
     void onNext(T next);

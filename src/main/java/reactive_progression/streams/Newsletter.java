@@ -1,4 +1,4 @@
-package reactive.streams;
+package reactive_progression.streams;
 
 
 import lombok.AllArgsConstructor;

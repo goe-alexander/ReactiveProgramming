@@ -1,4 +1,4 @@
-package observer;
+package reactive_progression.observer;
 
 public class ConcreteObserverB implements Observer<String>{
     @Override

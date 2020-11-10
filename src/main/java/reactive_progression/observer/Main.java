@@ -1,4 +1,4 @@
-package observer;
+package reactive_progression.observer;
 
 public class Main {
     public static void main(String[] args){

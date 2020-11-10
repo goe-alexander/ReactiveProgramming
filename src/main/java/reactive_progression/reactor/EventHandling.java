@@ -1,4 +1,4 @@
-package project.reactor;
+package reactive_progression.reactor;
 
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.ConnectableFlux;

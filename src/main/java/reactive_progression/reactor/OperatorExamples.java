@@ -1,4 +1,4 @@
-package project.reactor;
+package reactive_progression.reactor;
 
 import lombok.extern.log4j.Log4j2;
 import reactor.core.publisher.Flux;
