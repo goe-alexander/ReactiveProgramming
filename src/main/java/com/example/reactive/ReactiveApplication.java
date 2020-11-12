@@ -12,8 +12,8 @@ import reactor.core.publisher.Hooks;
 
 import java.util.concurrent.Executor;
 
-@EnableAsync
-@SpringBootApplication
+/*@EnableAsync
+@SpringBootApplication*/
 public class ReactiveApplication implements AsyncConfigurer {
 
 
